@@ -1,4 +1,4 @@
-module MUX32 
+module MUX2 
 (
     input [31:0] a_i,
     input [31:0] b_i,

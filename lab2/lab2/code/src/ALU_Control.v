@@ -1,7 +1,7 @@
 module ALU_Control
 (
     input [6:0] func7_i,
-    input [3:0] func3_i,
+    input [2:0] func3_i,
     input [1:0] op_i,
     output reg [2:0] ctl_o
 );
@@ -9,8 +9,8 @@ module ALU_Control
 // and: 000
 // xor: 001
 // sll: 010
-// add: 011
-// sub: 100
+// add, addi, lw, sw: 011
+// sub, beq: 100
 // mul: 101
 // srai: 110
 
@@ -36,13 +36,17 @@ always @(*) begin
                 ctl_o = 3'b101;
             end
         end
-    end else begin
+    end 
+    if (op_i == 2'b11) begin
         if (func3_i == 3'b000) begin
             ctl_o = 3'b011;
         end
         if (func3_i == 3'b101) begin
             ctl_o = 3'b110;
         end
+    end
+    if (op_i == 2'b00) begin
+        ctl_o = 3'b011;
     end
 end
 
