@@ -52,6 +52,9 @@ always @(*) begin
     if (op_i == 2'b00) begin
         ctl_o = 3'b011;
     end
+    if (op_i == 2'b01) begin
+        ctl_o = 3'b100;
+    end
 end
 
 
